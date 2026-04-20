@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTS Studio – Text to Speech</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-blob bg-blob--1"></div>
+  <div class="bg-blob bg-blob--2"></div>
+
+  <div class="page">
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon" aria-hidden="true">🎙️</span>
+        <div>
+          <h1 class="logo-title">TTS Studio</h1>
+          <p class="logo-sub">Powered by Microsoft Edge Neural Voices</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Main card ── -->
+    <main class="card" role="main">
+
+      <!-- Text area -->
+      <div class="field">
+        <div class="field__label-row">
+          <label for="text-input" class="label">Văn bản cần đọc</label>
+          <span class="hint">Ctrl+Enter để tạo nhanh</span>
+        </div>
+        <div class="textarea-wrap">
+          <textarea
+            id="text-input"
+            placeholder="Nhập hoặc dán văn bản vào đây…"
+            rows="6"
+            spellcheck="false"
+          ></textarea>
+          <span class="char-count">
+            <span id="char-current">0</span> ký tự
+          </span>
+        </div>
+      </div>
+
+      <!-- Language + Voice row -->
+      <div class="two-col">
+        <div class="field">
+          <label for="lang-select" class="label">Ngôn ngữ</label>
+          <div class="select-wrap">
+            <select id="lang-select" onchange="onLanguageChange()">
+              <option value="">Đang tải giọng đọc…</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="voice-select" class="label">Giọng đọc</label>
+          <div class="select-wrap">
+            <select id="voice-select">
+              <option value="">Chọn ngôn ngữ trước</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rate slider -->
+      <div class="field">
+        <div class="field__label-row">
+          <label for="rate-slider" class="label">Tốc độ đọc</label>
+          <span class="badge" id="rate-badge">Bình thường (0%)</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-side-label">Chậm</span>
+          <input type="range" id="rate-slider" min="-50" max="100" value="0" step="5" />
+          <span class="slider-side-label right">Nhanh</span>
+        </div>
+      </div>
+
+      <!-- Generate button -->
+      <button id="generate-btn" class="btn-primary" onclick="generateSpeech()">
+        <span id="btn-icon" class="btn-icon" aria-hidden="true">▶</span>
+        <span id="btn-label">Tạo giọng nói</span>
+      </button>
+
+      <!-- Status banner -->
+      <div id="status" class="status status--hidden" role="status" aria-live="polite"></div>
+
+      <!-- Audio player -->
+      <div id="audio-section" class="audio-section audio-section--hidden">
+        <div class="audio-header">
+          <span class="audio-title">🎵 Kết quả</span>
+          <button class="btn-download" onclick="downloadAudio()">⬇ Tải về</button>
+        </div>
+        <audio id="audio-player" controls preload="auto"></audio>
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <p>
+        400+ neural voices · Hỗ trợ tiếng Việt &amp; đa ngôn ngữ ·
+        <a href="https://github.com/rany2/edge-tts" target="_blank" rel="noopener">edge-tts</a>
+      </p>
+    </footer>
+
+  </div><!-- /page -->
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
